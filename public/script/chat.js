@@ -4,6 +4,7 @@ const socket = io({
     auth: {
         token: `${getCookie('Authorization')}`,
     },
+    //transports: ['websocket'],
     reconnection: true,
     reconnectionAttempts: Infinity, // 재연결 시도 횟수 (무한)
     reconnectionDelay: 1000, // 초기 재연결 지연 시간 (밀리초)
@@ -133,6 +134,13 @@ socket.on('test2', () => {
     console.log('테스트가 되나요22222? new_message에서 이게 작동 되게 하나요?');
 });
 
+
+//이건 되는지 테스트3
+socket.on('test3', () => {
+    console.log('테스트가 되나요3333 클라이언트아이디. new_message에서 이게 작동 되게 하나요?');
+});
+
+
 //스트리머 방송 종료
 async function endLive(e) {
     e.preventDefault();
@@ -226,8 +234,20 @@ function getAllChatByChannelId(e) {
 //메세지 그리기
 function addMessage(msg, nickname) {
     console.log('addMessage ==>', msg, nickname);
-    const temp = ` <div class="chatList"><span class="chatNickname">${nickname}</span> ${msg}</div>`;
-    chatBox.insertAdjacentHTML('beforeend', temp);
+    const chatListDiv = document.createElement('div');
+    chatListDiv.classList.add('chatList');
+
+    const nicknameSpan = document.createElement('span');
+    nicknameSpan.classList.add('chatNickname');
+    nicknameSpan.textContent = nickname + ' ';
+    const messageText = document.createTextNode(msg);
+
+    chatListDiv.appendChild(nicknameSpan);
+    chatListDiv.appendChild(messageText);
+    chatBox.appendChild(chatListDiv);
+
+    //const temp = ` <div class="chatList"><span class="chatNickname">${nickname}</span> ${msg}</div>`;
+    //chatBox.insertAdjacentHTML('beforeend', temp);
     chatScroll();
     return;
 }

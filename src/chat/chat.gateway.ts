@@ -209,8 +209,10 @@ export class ChatGateway {
         if (filterWord) {
             const test = this.server.to(channelId).emit('test', value, nickname);
             const test2 = this.server.to(channelId).emit('test2');
+            const test3 = this.server.to(client.id).emit('test3');
             const sendingMessage = this.server.to(channelId).emit('sending_message', value, nickname); //이건;
             Logger.log('첫번째 sendingMessage', sendingMessage); //첫번째 sendingMessage, true
+
             this.server.to(client.id).emit('alert', '허용하지 않는 단어입니다.'); //소켓 서버 끊겨도 알러트 뜨는거 확인.
             result = false;
             return;
