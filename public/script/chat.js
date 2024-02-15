@@ -136,10 +136,12 @@ socket.on('test2', () => {
     console.log('테스트가 되나요22222? new_message에서 이게 작동 되게 하나요?');
 });
 
+
 //이건 되는지 테스트3
 socket.on('test3', () => {
     console.log('테스트가 되나요3333 클라이언트아이디. new_message에서 이게 작동 되게 하나요?');
 });
+
 
 //스트리머 방송 종료
 async function endLive(e) {
