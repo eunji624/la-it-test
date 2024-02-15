@@ -4,7 +4,7 @@ const socket = io({
     auth: {
         token: `${getCookie('Authorization')}`,
     },
-    //transports: ['websocket'],
+    //transports: ['websocket'], //테스트 예정
     reconnection: true,
     reconnectionAttempts: Infinity, // 재연결 시도 횟수 (무한)
     reconnectionDelay: 1000, // 초기 재연결 지연 시간 (밀리초)
@@ -12,7 +12,6 @@ const socket = io({
     pingInterval: 2000, // 60초마다 ping->2초
     //pingTimeout: 6000, // 60초 동안 응답 없으면 연결 종료->10분으로    늘림
     pingTimeout: 60000, // 60초 동안 응답 없으면 연결 종료->10분으로 늘림
-
     //pingTimeout: 6000000, // 60초 동안 응답 없으면 연결 종료->10분으로 늘림 __> 1000분
     upgradeTimeout: 60000, // 연결 업그레이드 시간 제한
 });
@@ -136,12 +135,10 @@ socket.on('test2', () => {
     console.log('테스트가 되나요22222? new_message에서 이게 작동 되게 하나요?');
 });
 
-
 //이건 되는지 테스트3
 socket.on('test3', () => {
     console.log('테스트가 되나요3333 클라이언트아이디. new_message에서 이게 작동 되게 하나요?');
 });
-
 
 //스트리머 방송 종료
 async function endLive(e) {

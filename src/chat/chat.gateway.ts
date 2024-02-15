@@ -17,10 +17,10 @@ import { ConfigService } from '@nestjs/config';
 import * as jwt from 'jsonwebtoken';
 
 @WebSocketGateway({
-    cors: {
-        origin: ['https://la-it.online/', 'https://streaming.la-it.online/'],
-        credentials: true,
-    },
+    //cors: {
+    //    //origin: ['https://la-it.online/', 'https://streaming.la-it.online/'],
+    //    credentials: true,
+    //},
 })
 export class ChatGateway {
     @WebSocketServer() server: Server;
